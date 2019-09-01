@@ -1,0 +1,9 @@
+\chapter{Conclusion}
+As part of this thesis we looked at different implementations to enable real time multi-face detection for automotive use cases. The concrete scenario is a mounted camera inside a vehicle. We assume that no more than four people can fit in our car and that the people do not move a lot while the car is driving. The implemented system needs to be performant enough to run on a Raspberry PI 3.\\
+Before implementing the final solution, we looked at different approaches and their performance and detection quality and conducted benchmarks as there was no previous research in this field.\\
+Our testing showed that the \gls{opencv} cascade implementation was the fastest (15 FPS), followed by the CNN approach (1.22 FPS) and the \gls{dlib} HoG implementation at 0.6 FPS.\\
+The most accurate algorithm is the CNN approach with 91\% accuracy\footnote{Accuracy is defined as the sum of detected faces compared to the \gls{opencv} CNN approach in the benchmark video} followed by the \gls{dlib} implementation at 77\% and the \gls{opencv} cascade implementation (34\%).\\
+As the \gls{cnn} approach delivered the best accuracy and a fairly good performance it is the basis for our implementation. The face detector is used together with a KCF object tracker to boost the performance to more than 10 FPS.\\
+Looking ahead we cannot wait to see how this field of research will develop in the future. New research in artificial intelligence and neural network architectures have the potential to significantly reduce the overhead of our system and improve its speed and performance. 
+
+%Conclusion: Short summary of the contribution and its implications. The goal is to drive home the result of your thesis. Do not repeat all the stuff you have written in other parts of the thesis in detail. Again, limit this chapter to very few pages. The shorter, the easier it is to keep consistent with the parts it summarizes.

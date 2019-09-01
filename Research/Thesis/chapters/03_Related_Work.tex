@@ -1,0 +1,31 @@
+\chapter{Related Work}
+Most of the research in the area of emotion recognition on embedded devices is focused on the subsystems face detection, emotion classification and object tracking. Only in one paper a combination of face detection and emotion classification was implemented in an optimized way for embedded devices.\\
+% Raspberry Implementation
+In the paper "Real-Time Emotion Recognition from Facial Images using Raspberry Pi II" \cite{raspberry2} a real-time emotion detector was implemented on the Raspberry Pi II using the Viola Jones Algorithm and an Adaboost classifier. The proposed solution can recognize up to 5 different emotions in real-time (120 ms delay) for one person. The solution proposed in this paper extends the functionality of that system by implementing a \gls{cnn} and classifying up to 7 emotions. Additionally, the approach is extended so that multiple faces can be detected. At the same time the framerate is as high or even higher (depending on external parameters).\\
+% <end>
+% Intro all FD
+In the following section the face detection algorithms and techniques used in our benchmarks and in the final proposed system are summarized.\\ 
+% <end>
+% CNN, MobileNetV2
+The face detector used in the proposed system is based on the \gls{mobilenet} SSDLite object detector proposed in "MobileNetV2: Inverted Residuals and Linear Bottlenecks
+"\cite{mobilenet}. The network can detect a variety of objects in different environments, lighting conditions and under occlusion. It was developed by a group of researchers at Google Inc. in 2018. The \gls{mobilenet} \gls{cnn} is optimized for mobile devices and provides a very high accuracy with limited resources. This neural network architecture provides the foundation for the model we trained for our system.\\
+% <end>
+We trained the \gls{mobilenet} model on the Wider Face data set introduced in "WIDER FACE : A Face Detection Benchmark"\cite{widerface} by a group of researcher at the university of Hong Kong in 2015. The data set contains 393.703 faces in different shapes and environments and is one of the largest face data sets publicly available.\\
+% Viola Jones
+For benchmarking the \gls{opencv} implementation of the Viola Jones Algorithm proposed in "Rapid Object Detection Using a Boosted Cascade of Simple Features"\cite{cascade} by Paul Viola and Michael Jones in 2004 was also included. They introduce three new techniques for their detection algorithm which provide significant improvements in speed and detection quality compared to traditional approaches. First integral images are used to speed up the feature extraction. A technique called AdaBoost is then used to focus only on the relevant features of an object for model training. Finally, cascading classifiers are used to eliminate many unnecessary checks by grouping them and introducing detection stages. If a feature fails at the first stage all subsequent stages are no longer evaluated.\\
+% <end>
+% HoG
+The dlib face detection implementation used in our benchmark is enabled by an approach introduced in "Histograms of Oriented Gradients for Human Detection"\cite{HoGpaper} by Navneet Dalal and Bill Triggs published in 2005. The algorithm starts by converting the image into a Histograms of Oriented Gradients that highlights differences and directions of contrast. Afterwards a detection window with a linear SVM slides over the image to detect faces.\\
+% <end>
+% Intro all OD
+In the following section the object tracking algorithms used in our benchmarks and in the final proposed system are summarized.\\ 
+% <end>
+% KCF
+To increase the overall performance of our implementation the detected face bounding boxes are passed to an object tracker which is based on kernelized correlation filters introduced in "High-Speed Tracking with Kernelized Correlation Filters"\cite{kcf}. The KCF object tracker eliminates the visual lag imposed by the neural network and it provides the best balance between accuracy and performance for our use case (the object tracker runs in n*log(n)).\\
+% <end>
+% MOSSE
+The MOSSE object tracker based on the paper "Visual Object Tracking using Adaptive Correlation Filters"\cite{Mosse} published by a group of researchers at the Colorado State University was also included in our benchmark. It tracks objects with correlation filters and is currently the fastest object tracker within the \gls{opencv} library.\\
+% <end>
+% Emotion Classification Approach
+Lastly the detected face is processed by a facial landmark detector and an emotion classifier. The emotion classifier in our system was trained on "The Extended Cohn-Kanade Dataset (CK+)"\cite{ckplus} published by Cohn Kanade in 2010 which consists of the faces of 123 subjects and is labeled with their emotions. 
+% <end>

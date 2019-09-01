@@ -1,0 +1,36 @@
+\chapter{Introduction}
+% Motivation and Background
+As the speed and - more importantly - the efficiency of CPUs is rapidly increasing, new opportunities for research in embedded devices are constantly arising. One recent megatrend that is enabled by cheap, small and energy efficient computing devices is edge computing. Embedded devices have the potential to bring the power of digitalization to many places that were previously too expensive or inaccessible to digitalize. This is especially significant for the area of computer vision where a combination of powerful embedded devices and new algorithms and techniques in the field of A.I. enable a variety of new use cases.\\
+Traditional industries like manufacturing and automotive are the biggest beneficiaries of this trend. Today's cars are packed with sensors and assistants that increase passenger safety and comfort. Vehicles are expected to become increasingly autonomous which will further increase the significance of embedded devices in cars.\\
+% <end>
+% Topic and Use Case
+One use case for embedded devices in vehicles is to improve driver-vehicle interaction and communication. This reaches from better infotainment and entertainment features to safety features like drowsiness detection. The scope of this thesis will be to develop a system that enables real-time emotion recognition for up to 4 passengers inside a vehicle. There are multiple ways to achieve this goal and some can even be combined to form multimodal emotion recognition systems. We will focus on emotion recognition using a camera mounted inside a car.\\
+% <end>
+% Current Situation
+The field of emotion recognition using computer vision provides many algorithms with varying accuracy and performance for this problem. Most of the research however is focused on subcomponents of the pipeline like face detection or emotion classification. The existing research is also mostly focused on accuracy and not optimized to run in real-time on an embedded device. So far only one paper on emotion recognition for an older Raspberry PI 2 was published.\footnote{More information in the Related Work section}\\
+% <end>
+% The research problem/ questions is stated
+The primary challenge of our work is to scale algorithms with a high accuracy to the Raspberry PI. A high detection quality is necessary as difficult lighting conditions and face occlusion are common in cars. Additionally, our system needs to run in real time whilst meeting the resource constraints of an embedded device.\\
+% <end>
+% The specific objectives of the research are stated., state the research aims and/or research objectives
+Our goal is to combine the existing research and optimize it for our use case to achieve a better detection quality and performance (frames per second).\\
+% <end>
+% Methodology
+We solved the problem by first benchmarking three major techniques that enable face detection to determine whether they are fast enough to run on an embedded device. As part of the benchmarking all parameters were fine-tuned so that the algorithms deliver comparable results. For instance, one requirement was to enable face detection up to 1.8m and to run on the Raspberry PI with more than one frame per second.\\
+After a first qualitative comparison we investigated the specifics of our use case and whether there was any way to improve the system. As we expect the number of passengers in a car and the position of their faces to remain relatively constant over time, we decided to combine our face detector with an object tracker.\\
+After studying the existing literature two object trackers were combined with our face detector and then additional benchmarking was performed. The factors assessed as part of the benchmark were the overall speed and performance and the fit for our use case.\\
+Finally, some smaller improvements were implemented in the final system to further improve its capabilities like face loss detection and regular validity scans.\\
+% <end>
+% Proposed System / Results
+The final proposed system detects faces with a small and efficient convolutional neural network optimized for embedded devices based on the SSDLite \gls{mobilenet} \cite{mobilenet}. The network was trained for our use case with the Wider Face \cite{widerface} data set which contains more than 393.000 faces. As part of the data transformation pipeline small faces were removed from the data set so that the final training set contains about 30.000 faces. Transferred learning was then used to train the existing object detector on faces. \\
+The \gls{cnn} was then combined with the KCF object tracker to significantly increase the performance of the system (>10x speedup) whilst maintaining almost the same level of accuracy.\\
+Our proposed system runs at more than 10 FPS on a Raspberry PI and can detect 91\% of the faces compared to the \gls{opencv} CNN implementation in our benchmarking video.\\
+% <end>
+% The dissertation’s overall structure is outlined., outline the order of information in the thesis, 1-3 sentences per chapter.
+The structure of the thesis is as follows:\\
+First an overview of the different algorithms enabling face detection and object tracking is provided in the related work section.\\
+Then in the comparison section the different face detection approaches and the different object trackers are compared. This section contains both qualitative and quantitative assessments.\\
+Afterwards our proposed emotion recognition system is explained in detail, including the training process for our model.\\
+The evaluation section describes in detail the methods we used for the quantitative benchmarks and the qualitative assessments. Additionally, the final proposed system is evaluated and the characteristics as well as advantages and disadvantages are discussed.\\
+Lastly future research areas are highlighted and the content of this thesis is concluded.
+% <end>

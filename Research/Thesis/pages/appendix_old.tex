@@ -1,0 +1,30 @@
+\section{Annotated Source Code}
+\subsection{Emotion Detector}
+\lstinputlisting[language=Python]{code/emotion_detector.py}
+\subsection{Analytics}
+\lstinputlisting[language=Python]{code/analytics.py}
+\subsection{Data Transformation Notebook}
+Note: For the full jupyter notebook please see the repository on github.\\
+Data Transformation Pipeline:\\
+Before running the code complete the following steps:\\
+1. Download the wider face Training and Validation datasets from  [here](http://shuoyang1213.me/WIDERFACE/)\\
+2. Unzip the datasets\\
+3. Download the Pascal VOC annotations for the dataset from [here](https://github.com/akofman/wider-face-pascal-voc-annotations)\\
+4. Create the following folder structure:
+[Please see diagram on github]\\
+Run this script once to copy all nested images to toplevel folder:
+\lstinputlisting[language=Python]{code/first.py}
+Now your directory structure should look like this:
+[Please see diagram on github]\\
+Create CSV Files from your XML annotations:\\
+\lstinputlisting[language=Python]{code/second.py}
+1. Open the CSV Files in excel\\
+2. Remove all images with small faces (<20px in any direction) in Power Query\\
+3. Export to CSV (note that the file needs to be comma separated instead of semicolon)\\
+Note:\\
+The following files are needed for export, please also note the filenames:
+[Please see diagram on github]\\
+Let python copy only valid images to C:/tensorflow1/models/research/object\_detection/images:
+\lstinputlisting[language=Python]{code/last.py}
+Last Step:\\
+Copy the test/train label csv files to C:/tensorflow1/models/research/object\_detection/images/

@@ -1,0 +1,54 @@
+\RequirePackage[l2tabu,orthodox]{nag}
+\documentclass[headsepline,footsepline,footinclude=false,oneside,fontsize=11pt,paper=a4,listof=totoc,bibliography=totoc,DIV=12]{scrbook} % one-sided
+\input{settings}
+\newcommand*{\getUniversity}{Technische Universität München}
+\newcommand*{\getFaculty}{Department of Informatics}
+\newcommand*{\getTitle}{Enabling Real Time Multi Face Emotion Recognition for Embedded Devices}
+\newcommand*{\getTitleGer}{Effiziente Implementierung eines Echtzeit-Emotionserkennungssystems für Fahrzeuge}
+\newcommand*{\getAuthor}{Nikan Moghadam}
+\newcommand*{\getDoctype}{Bachelor's Thesis in Information Systems}
+\newcommand*{\getSupervisor}{Prof. Dr.-Ing. Alois Knoll}
+\newcommand*{\getAdvisor}{M.Sc. Sina Shafaei}
+\newcommand*{\getSubmissionDate}{15th August 2019}
+\newcommand*{\getSubmissionLocation}{Munich}
+
+\begin{document}
+
+
+\selectlanguage{english}
+
+% Set page numbering to avoid "destination with the same identifier has been already used" warning for cover page.
+% (see https://en.wikibooks.org/wiki/LaTeX/Hyperlinks#Problems_with_Links_and_Pages).
+\pagenumbering{alph}
+\input{pages/cover}
+
+\frontmatter{}
+
+\input{pages/title}
+\input{pages/disclaimer}
+\input{pages/acknowledgements}
+\input{pages/abstract}
+\microtypesetup{protrusion=false}
+\tableofcontents{}
+\microtypesetup{protrusion=true}
+
+\mainmatter{}
+
+\input{chapters/01_introduction}
+\input{chapters/02_Fundamentals.tex}
+\input{chapters/03_Related_Work.tex}
+\input{chapters/04_Solution_Approach.tex}
+\input{chapters/05_Evaluation.tex}
+\input{chapters/06_Future_Work.tex}
+\input{chapters/07_Conclusion.tex}
+
+\appendix{}
+
+\input{pages/appendix}
+\microtypesetup{protrusion=false}
+\listoffigures{}
+\listoftables{}
+\microtypesetup{protrusion=true}
+\printglossaries
+\printbibliography{}
+\end{document}
